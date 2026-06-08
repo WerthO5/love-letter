@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Have fun, My Love! 🎂</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="page-header">
+    <a class="brand" href="index.html">Love App</a>
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="love-message.html" class="current">Love Message</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Floating hearts -->
+  <div class="heart-float" style="left:5%;animation-delay:0s;animation-duration:9s">💕</div>
+  <div class="heart-float" style="left:20%;animation-delay:2s;animation-duration:7s">🌸</div>
+  <div class="heart-float" style="left:40%;animation-delay:4s;animation-duration:11s">💖</div>
+  <div class="heart-float" style="left:65%;animation-delay:1s;animation-duration:8s">✨</div>
+  <div class="heart-float" style="left:80%;animation-delay:3s;animation-duration:10s">💗</div>
+  <div class="heart-float" style="left:90%;animation-delay:5s;animation-duration:9s">🌷</div>
+
+  <div class="container">
+    <!-- Hero -->
+    <div class="card hero" style="animation-delay:0s">
+      <h1>Я тебя люблю, мое солнышко</h1>
+      <span class="cake-emoji">❤️</span>
+      <p class="subtitle">❝ Каждую ночь я закрываю глаза, возвращаюсь к поискам тебя. ❞</p>
+      <div class="date-badge">
+        <div class="date">May 5th, 2025</div>
+        <div class="date-sub">День, изменивший мою жизнь..</div>
+      </div>
+    </div>
+
+    <!-- Welcome -->
+    <div class="card" style="animation-delay:0.1s;max-width:500px">
+      <div class="welcome">
+        <div class="bunny">🐰</div>
+        <h2>Обещаю стараться быть достойным тебя</h2>
+        <p class="amor">mi amor!</p>
+        <p class="kaomoji">(o⌣ ⌣o)</p>
+        <p class="cta-text">Кнопка нажимается (разработаю в дальнейшем) ( ˘ ˘ )⊃♥</p>
+        <button class="btn" onclick="scrollToLove()">Next!! ➡️</button>
+      </div>
+    </div>
+
+    <!-- Why I Love You -->
+    <div class="card card-pink love-section" id="love-section" style="animation-delay:0.2s">
+      <h2>Причины любить тебя</h2>
+      <p class="subtitle">Немного из того бесконечного количества... 💕</p>
+      <div class="love-grid">
+        <div class="love-card">
+          <div class="emoji">😍</div>
+          <h3>Твоя красивая улыбка</h3>
+          <img src="smile.jpg" alt="Your Smile" class="love-image">
+        </div>
+        <div class="love-card">
+          <div class="emoji">🤗</div>
+          <h3>Наши теплые объятия</h3>
+          <p>They make me feel safe, loved, and completely at home</p>
+        </div>
+        <div class="love-card">
+          <div class="emoji">😂</div>
+          <h3>Твой яркий смех</h3>
+          <p>It's the most beautiful sound in the world to me</p>
+        </div>
+        <div class="love-card">
+          <div class="emoji">🥰</div>
+          <h3>Доброта твоего сердца</h3>
+          <p>The way you care for others shows your beautiful soul</p>
+        </div>
+        <div class="love-card">
+          <div class="emoji">✨</div>
+          <h3>Наши мечты</h3>
+          <p>Your ambition and passion inspire me every single day</p>
+        </div>
+        <div class="love-card">
+          <div class="emoji">🎵</div>
+          <h3>Тяжелая работа над нами</h3>
+          <p>Even if it's just in the kitchen, you make life a celebration</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Forever Starts Here -->
+    <div class="card card-cream forever" style="animation-delay:0.3s">
+      <p class="italic-note">Счастье в том 🏕️ что вместе мы...</p>
+      <h2>Вечность начинается здесь</h2>
+      <div class="us-circle" onclick="changePhoto()" id="usCircle">
+        <span>Нажми</span>
+        <div class="change-overlay">📷 Загрузи фото</div>
+      </div>
+      <input type="file" id="photoInput" accept="image/*" style="display:none" onchange="loadPhoto(event)">
+      <p>Тогда, когда я игнорировал свои боль и грусть, заостряя внимание лишь на том, что хотел видеть, а каждый день воспринимал как должное, вот только наша встреча перевернула мой мир и наполнила его красками. Ты наверняка скажешь, что я преувеличиваю, но все так и есть. Я очень сильно вырос. И этим всем я обязан тебе, и только тебе 💕</p>
+    </div>
+
+    <!-- Interactive -->
+    <div class="card interactive" style="animation-delay:0.4s">
+      <h2>Интерактивный любовный счет</h2>
+      <p class="subtitle">Когда заскучаешь и захочешь чем нибудь занять руки, нажми на мое сердечко</p>
+      <div class="heart-counter">
+        <span class="label">Каждое твое нажатие делает эту функцию не безполезной😁</span>
+        <div class="right">
+          <span class="count" id="heartCount">0</span>
+          <button class="heart-btn" onclick="addHeart()">🤍</button>
+          <button class="reset-btn" onclick="resetHeartCount()" style="margin-left:12px;width:40px;height:40px;border-radius:50%;padding:0;display:inline-flex;align-items:center;justify-content:center;font-size:20px;line-height:1;border:none;background:#ff4d9e;color:#fff;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,0.12);">✕</button>
+        </div>
+      </div>
+      <p class="counter-note" id="counterNote">Отдай свое сердце лишь мне 💕</p>
+    </div>
+
+    <!-- Leave a Message -->
+    <div class="message-section" style="animation-delay:0.5s">
+      <h2>♡ 💌 Отзывы здесь ♡ ♡</h2>
+      <p class="subtitle">Если вдруг захочешь сказать что-то особенное, а другие соц сети не позволят</p>
+      <div class="msg-box-wrapper">
+        <textarea class="msg-textarea" id="msgArea" placeholder="Место, где врать запрещено... 💌"></textarea>
+        <button class="send-btn" onclick="sendMessage()">✈️ Отправить сообщение</button>
+      </div>
+    </div>
+
+    <!-- Thank You Footer -->
+    <div class="card card-gradient thankyou" style="animation-delay:0.6s">
+      <h2>Спасибо тебе за то, что ты есть 💝</h2>
+      <p>Каждое воспоминание с тобой — это подарок, а каждый день сродне празднику.</p>
+      <div class="emojis">🎂 🎉 💕 🎈 ✨</div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">💌 Сообщение отправлено с любовью!</div>
+
+  <script>
+    const PHOTO_STORAGE_KEY = 'loveMessage_usCirclePhoto';
+    const HEART_COUNT_STORAGE_KEY = 'loveMessage_heartCount';
+
+    function loadEmailJS(callback) {
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = 'https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js';
+      script.onload = function() {
+        console.log('EmailJS SDK loaded');
+        if (window.emailjs && emailjs.init) {
+          try {
+            emailjs.init(EMAILJS_USER_ID);
+            console.log('EmailJS initialized with user ID', EMAILJS_USER_ID);
+            if (callback) callback();
+          } catch (err) {
+            console.error('EmailJS init failed', err);
+            document.getElementById('toast').textContent = 'EmailJS init failed. Проверьте user ID.';
+          }
+        } else {
+          console.error('EmailJS SDK loaded but emailjs object is not present');
+          document.getElementById('toast').textContent = 'EmailJS SDK загружен, но emailjs отсутствует.';
+        }
+      };
+      script.onerror = function() {
+        console.error('Failed to load EmailJS SDK');
+        document.getElementById('toast').textContent = 'Не удалось загрузить EmailJS SDK.';
+      };
+      document.head.appendChild(script);
+    }
+
+    function loadSavedPhoto() {
+      const saved = localStorage.getItem(PHOTO_STORAGE_KEY);
+      if (!saved) return;
+      const circle = document.getElementById('usCircle');
+      circle.style.backgroundImage = `url(${saved})`;
+      circle.style.backgroundSize = 'cover';
+      circle.style.backgroundPosition = 'center';
+      circle.querySelector('span').style.display = 'none';
+    }
+
+    function getRandomHeartNote() {
+      const notes = [
+        'Ты делаешь мой мир ярче каждым нажатием 💫',
+        'С каждой каплей любви этот счёт растёт 💕',
+        'Нажимай чаще — я чувствую каждое твоё сердце 🤍',
+        'Это число — как наши чувства: становится больше и теплее 💖',
+        'Каждое нажатие — это ещё один повод улыбнуться 😍',
+        'Ты делаешь меня счастливым одним касанием 🌟',
+        'Я считаю каждое твоё прикосновение с трепетом 💘'
+      ];
+      return notes[Math.floor(Math.random() * notes.length)];
+    }
+
+    function loadSavedHeartCount() {
+      const saved = localStorage.getItem(HEART_COUNT_STORAGE_KEY);
+      if (!saved) return;
+      count = parseInt(saved, 10) || 0;
+      document.getElementById('heartCount').textContent = count;
+      document.getElementById('counterNote').textContent = getRandomHeartNote();
+    }
+
+    function scrollToLove() {
+      document.getElementById('love-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    let count = 0;
+    function addHeart() {
+      count++;
+      document.getElementById('heartCount').textContent = count;
+      const btn = document.querySelector('.heart-btn');
+      btn.textContent = '❤️';
+      setTimeout(() => btn.textContent = '🤍', 300);
+      document.getElementById('counterNote').textContent = getRandomHeartNote();
+      localStorage.setItem(HEART_COUNT_STORAGE_KEY, count);
+    }
+
+    function resetHeartCount() {
+      count = 0;
+      document.getElementById('heartCount').textContent = count;
+      localStorage.setItem(HEART_COUNT_STORAGE_KEY, count);
+    }
+
+    // EmailJS: client-side email sending
+    // You need to register at https://www.emailjs.com/, create a service and template,
+    // then replace the placeholders below with your actual IDs.
+    const EMAILJS_USER_ID = '3YAb3beReUWx8DkZ6';
+    const EMAILJS_SERVICE_ID = 'service_k6k7blh';
+    const EMAILJS_TEMPLATE_ID = 'template_ulp37p8';
+
+    loadEmailJS();
+    loadSavedPhoto();
+    loadSavedHeartCount();
+
+    function sendMessage() {
+      const msg = document.getElementById('msgArea').value.trim();
+      if (!msg) {
+        alert('Вначале напиши что-нибудь! 💕');
+        return;
+      }
+
+      const toast = document.getElementById('toast');
+      toast.textContent = 'Отправка...';
+      toast.classList.add('show');
+
+      const templateParams = {
+        message: msg
+        // you can include other params here (e.g., from_name, reply_to)
+      };
+
+      if (!window.emailjs || !emailjs.send) {
+        toast.textContent = 'EmailJS не подключен. Проверьте подключение SDK.';
+        setTimeout(() => toast.classList.remove('show'), 3500);
+        return;
+      }
+
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+        .then(function(response) {
+          toast.textContent = '💌 Сообщение отправлено с любовью!';
+          document.getElementById('msgArea').value = '';
+          setTimeout(() => toast.classList.remove('show'), 3500);
+        }, function(error) {
+          toast.textContent = 'Ошибка отправки: ' + (error && error.text ? error.text : 'unknown');
+          setTimeout(() => toast.classList.remove('show'), 3500);
+        });
+    }
+
+    function changePhoto() {
+      document.getElementById('photoInput').click();
+    }
+
+    function loadPhoto(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const circle = document.getElementById('usCircle');
+        const dataUrl = e.target.result;
+        circle.style.backgroundImage = `url(${dataUrl})`;
+        circle.style.backgroundSize = 'cover';
+        circle.style.backgroundPosition = 'center';
+        circle.querySelector('span').style.display = 'none';
+        try {
+          localStorage.setItem(PHOTO_STORAGE_KEY, dataUrl);
+        } catch (err) {
+          console.warn('Не удалось сохранить фото в localStorage', err);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  </script>
+</body>
+</html>

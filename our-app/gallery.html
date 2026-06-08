@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery - Love App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="page-header">
+    <a class="brand" href="index.html">Love App</a>
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="love-message.html">Love Message</a>
+      <a href="gallery.html" class="current">Gallery</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="card gallery-header">
+      <h1>Gallery</h1>
+      <p class="subtitle">Добавляй свои фото и видео, они будут сохраняться в красивом grid-шаблоне.</p>
+      <div class="gallery-controls">
+        <button class="btn" id="addMediaBtn" type="button">Добавить фото / видео</button>
+        <button class="btn btn-secondary" id="clearGalleryBtn" type="button">Очистить галерею</button>
+      </div>
+      <input id="mediaInput" type="file" accept="image/*,video/*" multiple style="display:none">
+      <p class="gallery-note">Добавленные медиа сохраняются на сервере. После перезагрузки сайт загрузит вашу галерею с backend.</p>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </main>
+
+  <script>
+    const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20 MB
+    const mediaInput = document.getElementById('mediaInput');
+    const galleryGrid = document.getElementById('galleryGrid');
+    const addMediaBtn = document.getElementById('addMediaBtn');
+    const clearGalleryBtn = document.getElementById('clearGalleryBtn');
+    let galleryItems = [];
+
+    function formatFileSize(bytes) {
+      if (bytes >= 1024 * 1024) return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+      if (bytes >= 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+      return `${bytes} bytes`;
+    }
+
+    function showToast(message) {
+      let toast = document.querySelector('.toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.className = 'toast';
+        document.body.appendChild(toast);
+      }
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toast._timeout);
+      toast._timeout = setTimeout(() => toast.classList.remove('show'), 3200);
+    }
+
+    function getFileType(fileOrName) {
+      const filename = typeof fileOrName === 'string' ? fileOrName : fileOrName.name;
+      const type = typeof fileOrName === 'string' ? '' : fileOrName.type;
+      if (type.startsWith('image/')) return 'image';
+      if (type.startsWith('video/')) return 'video';
+
+      const ext = filename.split('.').pop().toLowerCase();
+      const videoExts = ['mp4', 'mov', 'webm', 'ogg', 'ogv', 'm4v', 'avi', 'mkv', 'flv', 'wmv'];
+      const imageExts = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'bmp', 'svg', 'heic'];
+      if (videoExts.includes(ext)) return 'video';
+      if (imageExts.includes(ext)) return 'image';
+      return 'unknown';
+    }
+
+    async function loadGalleryItems() {
+      try {
+        const response = await fetch('/api/gallery');
+        if (!response.ok) throw new Error('Failed to load gallery');
+        const data = await response.json();
+        galleryItems = Array.isArray(data.files) ? data.files : [];
+        renderGallery();
+      } catch (error) {
+        console.error(error);
+        showToast('Не удалось загрузить галерею с сервера. Запустите backend или проверьте соединение.');
+      }
+    }
+
+    function renderGallery() {
+      galleryGrid.innerHTML = '';
+      if (!galleryItems.length) {
+        galleryGrid.innerHTML = '<div class="empty-state">Галерея пуста. Нажми «Добавить фото / видео» и выбери файлы.</div>';
+        return;
+      }
+
+      galleryItems.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'gallery-card';
+
+        const mediaWrapper = document.createElement('div');
+        mediaWrapper.className = 'gallery-media';
+
+        if (item.type === 'video') {
+          const video = document.createElement('video');
+          video.controls = true;
+          video.setAttribute('playsinline', '');
+          video.src = item.url;
+          mediaWrapper.appendChild(video);
+          video.addEventListener('error', () => {
+            mediaWrapper.innerHTML = '<div class="gallery-unsupported">Видео не поддерживается браузером. Скачай файл, чтобы посмотреть.</div>';
+          });
+        } else {
+          const img = document.createElement('img');
+          img.src = item.url;
+          img.alt = item.name || 'Gallery image';
+          mediaWrapper.appendChild(img);
+        }
+
+        const info = document.createElement('div');
+        info.className = 'gallery-info';
+        const title = document.createElement('div');
+        title.textContent = item.name || (item.type === 'video' ? 'Video' : 'Photo');
+        title.className = 'gallery-title';
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'gallery-remove';
+        removeBtn.type = 'button';
+        removeBtn.textContent = '✕';
+        removeBtn.title = 'Удалить медиа';
+        removeBtn.addEventListener('click', async () => {
+          if (!item.filename) {
+            galleryItems.splice(index, 1);
+            renderGallery();
+            return;
+          }
+
+          try {
+            const response = await fetch('/api/upload', {
+              method: 'DELETE',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ filename: item.filename }),
+            });
+            if (!response.ok) throw new Error('Delete failed');
+            galleryItems.splice(index, 1);
+            renderGallery();
+            showToast('Медиа удалено с сервера.');
+          } catch (error) {
+            console.error(error);
+            showToast('Не удалось удалить медиа на сервере.');
+          }
+        });
+
+        info.appendChild(title);
+        info.appendChild(removeBtn);
+        card.appendChild(mediaWrapper);
+        card.appendChild(info);
+        galleryGrid.appendChild(card);
+      });
+    }
+
+    async function uploadFiles(files) {
+      const fileList = Array.from(files);
+      if (!fileList.length) return;
+
+      const formData = new FormData();
+      fileList.forEach((file) => {
+        const type = getFileType(file);
+        if (type === 'unknown') {
+          showToast(`Формат файла ${file.name} не поддерживается.`);
+          return;
+        }
+        if (file.size > MAX_FILE_SIZE) {
+          showToast(`Файл ${file.name} слишком большой (${formatFileSize(file.size)}). Максимум ${formatFileSize(MAX_FILE_SIZE)}.`);
+          return;
+        }
+        formData.append('media', file);
+      });
+
+      try {
+        const response = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData,
+        });
+        if (!response.ok) throw new Error('Upload failed');
+        const data = await response.json();
+        if (Array.isArray(data.files)) {
+          galleryItems = galleryItems.concat(data.files);
+          renderGallery();
+          showToast('Файлы успешно загружены на сервер.');
+        }
+      } catch (error) {
+        console.error(error);
+        showToast('Ошибка при загрузке на сервер. Проверьте backend.');
+      }
+    }
+
+    addMediaBtn.addEventListener('click', () => mediaInput.click());
+    mediaInput.addEventListener('change', () => {
+      uploadFiles(mediaInput.files);
+      mediaInput.value = '';
+    });
+
+    clearGalleryBtn.addEventListener('click', async () => {
+      if (!confirm('Очистить всю галерею?')) return;
+      try {
+        const response = await fetch('/api/gallery', {
+          method: 'DELETE',
+        });
+        if (!response.ok) throw new Error('Clear failed');
+        galleryItems = [];
+        renderGallery();
+        showToast('Галерея очищена на сервере.');
+      } catch (error) {
+        console.error(error);
+        showToast('Не удалось очистить галерею на сервере.');
+      }
+    });
+
+    loadGalleryItems();
+  </script>
+</body>
+</html>
