@@ -1,5 +1,5 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body {  background: linear-gradient(135deg, #f5e6f8 0%, #fce4ec 50%, #f3e5f5 100%);  font-family: 'Lato', sans-serif;  color: #444;  min-height: 100vh;  padding: 40px 20px;  position: relative;  overflow-x: hidden;}
+body {  background: linear-gradient(135deg, #f5e6f8 0%, #fce4ec 50%, #f3e5f5 100%);  font-family: 'Lato', sans-serif;  color: #444;  min-height: 100vh;  padding: 20px 12px;  position: relative;  overflow-x: hidden;}
 body::before {  content: '';  position: fixed;  inset: 0;  background: radial-gradient(circle at top left, rgba(255, 211, 238, 0.35), transparent 14%), radial-gradient(circle at bottom right, rgba(255, 240, 240, 0.35), transparent 22%);  opacity: 0.9;  z-index: 0;  pointer-events: none;  animation: glowBackground 12s ease-in-out infinite alternate; }
 .page-header {  width: min(900px, 100%);  margin: 0 auto 24px;  padding: 18px 24px;  border-radius: 28px;  background: rgba(255, 255, 255, 0.82);  border: 1px solid rgba(255, 182, 202, 0.48);  box-shadow: 0 18px 40px rgba(175, 68, 120, 0.08);  display: flex;  align-items: center;  justify-content: space-between;  gap: 16px;  position: relative;  z-index: 2; }
 .brand {  font-family: 'Playfair Display', serif;  font-size: 1.5rem;  color: #c2185b;  text-decoration: none; }
@@ -61,6 +61,9 @@ body::before {  content: '';  position: fixed;  inset: 0;  background: radial-gr
 .love-card .emoji {  font-size: 2rem;  margin-bottom: 12px; }
 .love-card h3 {  font-family: 'Playfair Display', serif;  font-style: italic;  color: #e91e8c;  font-size: 1rem;  margin-bottom: 10px; }
 .love-card p {  font-size: 0.85rem;  color: #666;  line-height: 1.5; }
+
+/* Images inside love cards should be responsive */
+.love-image { width: 100%; height: auto; display: block; border-radius: 12px; margin-top: 8px; }
 /* Forever section */
 .forever {  text-align: center; }
 .forever h2 {  font-family: 'Playfair Display', serif;  font-style: italic;  font-size: 2rem;  color: #e91e8c;  margin-bottom: 32px; }
@@ -114,6 +117,24 @@ button:focus {
 @keyframes textPop {  from { opacity: 0; transform: translateY(12px); }  to { opacity: 1; transform: translateY(0); }}
 @media (max-width: 900px) {  .love-grid { grid-template-columns: repeat(2, minmax(180px, 1fr)); } }
 @media (max-width: 600px) {  body { padding: 24px 16px; }  .card { padding: 32px 24px; }  .love-grid { grid-template-columns: 1fr; }  .hero h1 { font-size: 2.2rem; } }
+
+/* Mobile-first breakpoints: enhance layout for larger screens */
+@media (min-width: 600px) {
+  body { padding: 28px 20px; }
+  .card { padding: 40px 32px; }
+  .love-grid { grid-template-columns: repeat(2, minmax(180px, 1fr)); }
+  .hero h1 { font-size: 2.6rem; }
+  .page-header { padding: 18px 24px; flex-direction: row; align-items: center; }
+  .navbar { justify-content: flex-end; }
+}
+
+@media (min-width: 900px) {
+  body { padding: 40px 20px; }
+  .card { padding: 48px 40px; }
+  .love-grid { grid-template-columns: repeat(3, minmax(240px, 1fr)); max-width: 900px; }
+  .hero h1 { font-size: 2.8rem; }
+  .container { width: min(900px, 100%); }
+}
 
 .gallery-header {  text-align: center;  padding-bottom: 12px; }
 .gallery-controls {  display: flex;  flex-wrap: wrap;  justify-content: center;  gap: 12px;  margin-top: 18px; }
