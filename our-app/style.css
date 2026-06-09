@@ -1,19 +1,20 @@
+html { min-width: 0; overflow-x: hidden; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body {  background: linear-gradient(135deg, #f5e6f8 0%, #fce4ec 50%, #f3e5f5 100%);  font-family: 'Lato', sans-serif;  color: #444;  min-height: 100vh;  padding: 20px 12px;  position: relative;  overflow-x: hidden;}
+body {  background: linear-gradient(135deg, #f5e6f8 0%, #fce4ec 50%, #f3e5f5 100%);  font-family: 'Lato', sans-serif;  color: #444;  min-height: 100vh;  padding: 20px 16px;  position: relative;  overflow-x: hidden;}
 body::before {  content: '';  position: fixed;  inset: 0;  background: radial-gradient(circle at top left, rgba(255, 211, 238, 0.35), transparent 14%), radial-gradient(circle at bottom right, rgba(255, 240, 240, 0.35), transparent 22%);  opacity: 0.9;  z-index: 0;  pointer-events: none;  animation: glowBackground 12s ease-in-out infinite alternate; }
-.page-header {  width: min(900px, 100%);  margin: 0 auto 24px;  padding: 18px 24px;  border-radius: 28px;  background: rgba(255, 255, 255, 0.82);  border: 1px solid rgba(255, 182, 202, 0.48);  box-shadow: 0 18px 40px rgba(175, 68, 120, 0.08);  display: flex;  align-items: center;  justify-content: space-between;  gap: 16px;  position: relative;  z-index: 2; }
+.page-header {  width: 100%;  max-width: 900px;  margin: 0 auto 24px;  padding: 18px 20px;  border-radius: 28px;  background: rgba(255, 255, 255, 0.82);  border: 1px solid rgba(255, 182, 202, 0.48);  box-shadow: 0 18px 40px rgba(175, 68, 120, 0.08);  display: flex;  align-items: center;  justify-content: space-between;  gap: 16px;  position: relative;  z-index: 2; }
 .brand {  font-family: 'Playfair Display', serif;  font-size: 1.5rem;  color: #c2185b;  text-decoration: none; }
 .navbar {  display: flex;  flex-wrap: wrap;  align-items: center;  justify-content: flex-end;  gap: 10px; }
 .navbar a {  color: #7f3d6f;  text-decoration: none;  font-weight: 700;  padding: 10px 16px;  border-radius: 999px;  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease; }
 .navbar a:hover {  background: rgba(233, 30, 140, 0.12);  color: #c2185b;  transform: translateY(-1px); }
 .navbar a.current {  background: rgba(233, 30, 140, 0.14);  color: #c2185b;  pointer-events: none; }
 @media (max-width: 700px) {  .page-header {  flex-direction: column; align-items: stretch; }  .navbar {  justify-content: center; } }
-.container {  width: min(900px, 100%);  margin: 0 auto;  display: grid;  justify-items: center;  gap: 32px;  position: relative;  z-index: 1; }
+.container {  width: 100%;  max-width: 900px;  padding-inline: 16px;  margin: 0 auto;  display: grid;  justify-items: center;  gap: 32px;  position: relative;  z-index: 1; }
 /* Floating hearts background */
 .heart-float {  position: fixed;  top: 0;  font-size: 24px;  opacity: 0.14;  animation: floatUp 8s infinite linear;  pointer-events: none;  z-index: 0;  transform: translateX(-50%); }
 @keyframes floatUp {  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }  10% { opacity: 0.14; }  90% { opacity: 0.1; }  100% { transform: translateY(-120px) rotate(360deg); opacity: 0; }}
 /* Cards */
-.card {  background: white;  border-radius: 24px;  padding: 48px 40px;  box-shadow: 0 4px 30px rgba(255, 100, 150, 0.08);  position: relative;  z-index: 1;  width: min(860px, 100%);  margin: 0 auto;  opacity: 0;  transform: translateY(24px);  animation: fadeUp 0.7s ease forwards; }
+.card {  background: white;  border-radius: 24px;  padding: 48px 40px;  box-shadow: 0 4px 30px rgba(255, 100, 150, 0.08);  position: relative;  z-index: 1;  width: 100%;  max-width: 860px;  margin: 0 auto;  opacity: 0;  transform: translateY(24px);  animation: fadeUp 0.7s ease forwards; }
 .card:nth-child(1) { animation-delay: 0.05s; }
 .card:nth-child(2) { animation-delay: 0.12s; }
 .card:nth-child(3) { animation-delay: 0.18s; }
@@ -107,8 +108,8 @@ button:focus {
 .thankyou p {  color: rgba(255,255,255,0.9);  font-size: 0.95rem;  margin-bottom: 24px; }
 .thankyou .emojis {  font-size: 1.8rem;  display: flex;  justify-content: center;  gap: 16px; }
 /* Toast */
-.toast {  position: fixed;  bottom: 30px;  left: 50%;  transform: translateX(-50%) translateY(80px);  background: #e91e8c;  color: white;  padding: 14px 28px;  border-radius: 50px;  font-size: 0.95rem;  transition: transform 0.3s ease;  z-index: 999;  pointer-events: none; }
-.toast.show { transform: translateX(-50%) translateY(0); }
+.toast {  position: fixed;  bottom: 30px;  left: 50%;  transform: translateX(-50%) translateY(80px);  background: #e91e8c;  color: white;  padding: 14px 28px;  border-radius: 50px;  font-size: 0.95rem;  transition: transform 0.3s ease, opacity 0.2s ease;  opacity: 0;  visibility: hidden;  z-index: 999;  pointer-events: none; }
+.toast.show { transform: translateX(-50%) translateY(0);  opacity: 1;  visibility: visible; }
 @keyframes popIn {  from { opacity: 0; transform: translateY(14px) scale(0.96); }  to { opacity: 1; transform: translateY(0) scale(1); }}
 @keyframes floating {  from { transform: translateY(0) scale(1); }  to { transform: translateY(-10px) scale(1.02); }}
 @keyframes floatIn {  from { opacity: 0; transform: translateY(20px) scale(0.98); }  to { opacity: 1; transform: translateY(0) scale(1); }}
