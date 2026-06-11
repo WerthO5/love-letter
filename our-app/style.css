@@ -15,6 +15,27 @@ body::before {  content: '';  position: fixed;  inset: 0;  background: radial-gr
 @keyframes floatUp {  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }  10% { opacity: 0.14; }  90% { opacity: 0.1; }  100% { transform: translateY(-120px) rotate(360deg); opacity: 0; }}
 /* Cards */
 .card {  background: white;  border-radius: 24px;  padding: 48px 40px;  box-shadow: 0 4px 30px rgba(255, 100, 150, 0.08);  position: relative;  z-index: 1;  width: 100%;  max-width: 860px;  margin: 0 auto;  opacity: 0;  transform: translateY(24px);  animation: fadeUp 0.7s ease forwards; }
+
+.contact-card {  max-width: 760px;  overflow: hidden; }
+.contact-grid {  display: grid;  grid-template-columns: 1fr;  gap: 0; }
+.contact-info {  display: flex;  flex-direction: column;  justify-content: center; }
+.section-header {  margin-bottom: 24px; }
+.eyebrow {  display: inline-block;  color: #c2185b;  font-size: 0.85rem;  font-weight: 800;  letter-spacing: 0.16em;  text-transform: uppercase;  margin-bottom: 10px; }
+.contact-info h1 {  font-family: 'Playfair Display', serif;  font-size: 2.8rem;  line-height: 1.05;  color: #8a2e5f;  margin-bottom: 14px; }
+.contact-info .subtitle {  color: #77546a;  font-size: 1rem;  line-height: 1.7; }
+.contact-slots {  display: grid;  gap: 18px; }
+.slot {  background: rgba(255, 255, 255, 0.88);  border: 1px solid rgba(233, 30, 140, 0.14);  border-radius: 26px;  padding: 24px 22px;  box-shadow: 0 14px 32px rgba(233, 30, 140, 0.08); }
+.slot h2 {  font-family: 'Playfair Display', serif;  color: #c2185b;  font-size: 1.05rem;  margin-bottom: 10px; }
+.slot p {  color: #5f3c58;  line-height: 1.75;  font-size: 0.98rem; }
+.slot a {  color: #ad1457;  text-decoration: none; font-weight: 700; }
+.slot a:hover {  text-decoration: underline; }
+.social-links {  display: flex;  flex-wrap: wrap;  gap: 10px;  margin-top: 6px; }
+.social-link {  display: inline-flex;  align-items: center;  gap: 10px;  padding: 10px 14px;  background: rgba(233, 30, 140, 0.08);  border-radius: 18px;  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease; }
+.social-link img.social-icon {  width: 32px;  height: 32px;  border-radius: 50%;  object-fit: cover;  border: 1px solid rgba(255,255,255,0.8);  background: white; }
+.social-link span {  color: #8f2858;  font-weight: 700; }
+.social-link:hover {  background: rgba(233, 30, 140, 0.14);  transform: translateY(-1px);  box-shadow: 0 10px 20px rgba(233, 30, 140, 0.12); }
+@media (max-width: 860px) {  .contact-grid {  grid-template-columns: 1fr; }  .contact-info h1 { font-size: 2.3rem; } }
+
 .card:nth-child(1) { animation-delay: 0.05s; }
 .card:nth-child(2) { animation-delay: 0.12s; }
 .card:nth-child(3) { animation-delay: 0.18s; }
