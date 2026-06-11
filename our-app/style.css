@@ -9,7 +9,8 @@ body::before {  content: '';  position: fixed;  inset: 0;  background: radial-gr
 .navbar a:hover {  background: rgba(233, 30, 140, 0.12);  color: #c2185b;  transform: translateY(-1px); }
 .navbar a.current {  background: rgba(233, 30, 140, 0.14);  color: #c2185b;  pointer-events: none; }
 @media (max-width: 700px) {  .page-header {  flex-direction: column; align-items: stretch; }  .navbar {  justify-content: center; } }
-.container {  width: 100%;  max-width: 900px;  padding-inline: 16px;  margin: 0 auto;  display: grid;  justify-items: center;  gap: 32px;  position: relative;  z-index: 1; }
+.container {  width: 100%;  max-width: 900px;  padding-inline: 18px;  margin: 0 auto;  display: grid;  justify-items: center;  gap: 32px;  position: relative;  z-index: 1; }
+.card {  max-width: 100%; }
 /* Floating hearts background */
 .heart-float {  position: fixed;  top: 0;  font-size: 24px;  opacity: 0.14;  animation: floatUp 8s infinite linear;  pointer-events: none;  z-index: 0;  transform: translateX(-50%); }
 @keyframes floatUp {  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }  10% { opacity: 0.14; }  90% { opacity: 0.1; }  100% { transform: translateY(-120px) rotate(360deg); opacity: 0; }}
@@ -86,6 +87,7 @@ body::before {  content: '';  position: fixed;  inset: 0;  background: radial-gr
 
 /* Images inside love cards should be responsive */
 .love-image { width: 100%; height: auto; display: block; border-radius: 12px; margin-top: 8px; }
+.heart-video { width: 200px; height: 200px; object-fit: cover; border-radius: 12px; display: block; margin: 0 auto; }
 /* Forever section */
 .forever {  text-align: center; }
 .forever h2 {  font-family: 'Playfair Display', serif;  font-style: italic;  font-size: 2rem;  color: #e91e8c;  margin-bottom: 32px; }
@@ -97,9 +99,9 @@ body::before {  content: '';  position: fixed;  inset: 0;  background: radial-gr
 /* Interactive section */
 .interactive h2 {  font-size: 1.8rem;  font-weight: 700;  color: #333;  text-align: center;  margin-bottom: 8px; }
 .interactive .subtitle {  text-align: center;  color: #888;  margin-bottom: 28px; }
-.heart-counter {  background: #3d5afe;  border-radius: 16px;  padding: 24px 32px;  display: flex;  align-items: center;  justify-content: space-between;  color: white;  margin-bottom: 16px;  animation: floatIn 0.8s ease forwards; }
-.heart-counter .label {  font-size: 0.95rem; }
-.heart-counter .right {  display: flex;  align-items: center;  gap: 12px; }
+.heart-counter {  background: #3d5afe;  border-radius: 16px;  padding: 24px 32px;  display: flex;  flex-wrap: wrap;  align-items: center;  justify-content: space-between;  gap: 14px;  color: white;  margin-bottom: 16px;  animation: floatIn 0.8s ease forwards; }
+.heart-counter .label {  font-size: 0.95rem;  flex: 1 1 100%; }
+.heart-counter .right {  display: flex;  align-items: center;  gap: 12px;  flex-wrap: wrap;  justify-content: flex-end; }
 .heart-counter .count {  font-size: 1.4rem;  font-weight: 700; }
 .heart-btn {  width: 52px;  height: 52px;  background: white;  border: none;  border-radius: 50%;  font-size: 1.5rem;  cursor: pointer;  display: flex;  align-items: center;  justify-content: center;  transition: transform 0.15s ease, box-shadow 0.15s ease;  box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
 .heart-btn:hover {  transform: scale(1.08);  box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
@@ -127,6 +129,14 @@ button:focus {
 .thankyou {  text-align: center;  padding: 48px 40px;  animation: fadeUp 0.9s ease forwards; }
 .thankyou h2 {  font-size: 2rem;  font-weight: 700;  color: white;  margin-bottom: 12px; }
 .thankyou p {  color: rgba(255,255,255,0.9);  font-size: 0.95rem;  margin-bottom: 24px; }
+.tg__channel-link {  display: flex;  flex-direction: column;  align-items: center;  justify-content: center;  gap: 8px;  margin: 0 auto 18px;  max-width: 320px;  opacity: 0.72; }
+.tg__channel-link .tg_channel {  width: 300px;  height: 300px;  object-fit: cover;  border-radius: 12px;  border: none;  box-shadow: none;  transition: opacity 0.2s ease; }
+.tg__channel-link:hover {  opacity: 1; }
+.tg__channel-link a {  color: rgba(255,255,255,0.6);  font-size: 0.9rem;  text-decoration: none;  transition: color 0.2s ease; }
+.tg__channel-link a:hover {  color: white; }
+.thankyou-link {  margin-bottom: 18px; }
+.thankyou-link a {  display: inline-flex;  align-items: center;  justify-content: center;  padding: 12px_26px;  background: rgba(255,255,255,0.18);  color: white;  border-radius:_999px;  border: 1px solid rgba(255,255,255,0.28);  text-decoration: none;  font-size:_0.95rem;  font-weight: _700;  transition: background _0.2s ease, transform _0.2s ease; }
+.thankyou-link a:hover {  background: rgba(255,255,255,0.28);  transform: translateY(-1px); }
 .thankyou .emojis {  font-size: 1.8rem;  display: flex;  justify-content: center;  gap: 16px; }
 /* Toast */
 .toast {  position: fixed;  bottom: 30px;  left: 50%;  transform: translateX(-50%) translateY(80px);  background: #e91e8c;  color: white;  padding: 14px 28px;  border-radius: 50px;  font-size: 0.95rem;  transition: transform 0.3s ease, opacity 0.2s ease;  opacity: 0;  visibility: hidden;  z-index: 999;  pointer-events: none; }
