@@ -14,7 +14,7 @@
       <a href="index.html">Home</a>
       <a href="love-message.html" class="current">Love Message</a>
       <a href="gallery.html">Gallery</a>
-      <a href="about.html">About</a>
+      <a href="about.html">Letter</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
@@ -62,31 +62,37 @@
               <source src="public/smile.mp4" type="video/mp4">
           </div>
           <h3>Твоя красивая улыбка</h3>
+          <p>Пожалуйста, не забывай улыбаться😊 и я буду счастлив</p>
         </div>
         <div class="love-card">
-          <div class="emoji">🤗</div>
+          <div class="emoji"><video autoplay loop muted playsinline class="heart-video">
+              <source src="public/krid.mp4" type="video/mp4"></div>
           <h3>Наши теплые объятия</h3>
-          <p>They make me feel safe, loved, and completely at home</p>
+          <p>Хотя бы еще одну ночь...</p>
         </div>
         <div class="love-card">
-          <div class="emoji">😂</div>
+          <div class="emoji"><video autoplay loop muted playsinline class="heart-video">
+              <source src="public/song.MOV" type="video/mp4"></div>
           <h3>Твой яркий смех</h3>
-          <p>It's the most beautiful sound in the world to me</p>
+          <p>Да уж, твой смех заставлял меня забыться даже в самых серьезных моментах)</p>
         </div>
         <div class="love-card">
-          <div class="emoji">🥰</div>
+          <div class="emoji"><video autoplay loop muted playsinline class="heart-video">
+              <source src="public/cat.mp4" type="video/mp4"></div>
           <h3>Доброта твоего сердца</h3>
-          <p>The way you care for others shows your beautiful soul</p>
+          <p>Кто еще будет меня гладить, если не ты🥲</p>
         </div>
         <div class="love-card">
-          <div class="emoji">✨</div>
+          <div class="emoji"><video autoplay loop muted playsinline class="heart-video">
+              <source src="public/anime.MOV" type="video/mp4"></div>
           <h3>Наши мечты</h3>
-          <p>Your ambition and passion inspire me every single day</p>
+          <p>Помнишь, мы должны еще весь мир обьездить😁</p>
         </div>
         <div class="love-card">
-          <div class="emoji">🎵</div>
+          <div class="emoji"><video autoplay loop muted playsinline class="heart-video">
+              <source src="public/walking.MOV" type="video/mp4"></div>
           <h3>Тяжелая работа над нами</h3>
-          <p>Even if it's just in the kitchen, you make life a celebration</p>
+          <p>Плевать кто нам что скажет, мы с тобой всем назло🤗</p>
         </div>
       </div>
     </div>
@@ -100,7 +106,7 @@
         <div class="change-overlay">📷 Загрузи фото</div>
       </div>
       <input type="file" id="photoInput" accept="image/*" style="display:none" onchange="loadPhoto(event)">
-      <p>Тогда, когда я игнорировал свои боль и грусть, заостряя внимание лишь на том, что хотел видеть, а каждый день воспринимал как должное, вот только наша встреча перевернула мой мир и наполнила его красками. Ты наверняка скажешь, что я преувеличиваю, но все так и есть. Я очень сильно вырос. И этим всем я обязан тебе, и только тебе 💕</p>
+      <p>"Тогда, когда я игнорировал свои боль и грусть, заостряя внимание лишь на том, что хотел видеть, а каждый день воспринимал как должное, вот только наша встреча перевернула мой мир и наполнила его красками. Ты наверняка скажешь, что я преувеличиваю, но все так и есть. Я очень сильно вырос. И этим всем я обязан тебе, и только тебе" 💕</p>
     </div>
 
     <!-- Interactive -->
@@ -294,5 +300,6 @@
       reader.readAsDataURL(file);
     }
   </script>
+  <script src="music-player.js"></script>
 </body>
 </html>
