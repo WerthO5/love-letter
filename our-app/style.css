@@ -15,7 +15,7 @@ body::before {  content: '';  position: fixed;  inset: 0;  background: radial-gr
 .heart-float {  position: fixed;  top: 0;  font-size: 24px;  opacity: 0.14;  animation: floatUp 8s infinite linear;  pointer-events: none;  z-index: 0;  transform: translateX(-50%); }
 @keyframes floatUp {  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }  10% { opacity: 0.14; }  90% { opacity: 0.1; }  100% { transform: translateY(-120px) rotate(360deg); opacity: 0; }}
 /* Cards */
-.card {  background: white;  border-radius: 24px;  padding: 48px 40px;  box-shadow: 0 4px 30px rgba(255, 100, 150, 0.08);  position: relative;  z-index: 1;  width: 100%;  max-width: 860px;  margin: 0 auto;  opacity: 0;  transform: translateY(24px);  animation: fadeUp 0.7s ease forwards; }
+.card {  margin: 0 16px;  background: white;  border-radius: 24px;  padding: 48px 40px;  box-shadow: 0 4px 30px rgba(255, 100, 150, 0.08);  position: relative;  z-index: 1;  width: 100%;  max-width: 860px;  margin: 0 auto;  opacity: 0;  transform: translateY(24px);  animation: fadeUp 0.7s ease forwards; }
 
 .contact-card {  max-width: 760px;  overflow: hidden; }
 .contact-grid {  display: grid;  grid-template-columns: 1fr;  gap: 0; }
@@ -130,7 +130,7 @@ button:focus {
 .thankyou h2 {  font-size: 2rem;  font-weight: 700;  color: white;  margin-bottom: 12px; }
 .thankyou p {  color: rgba(255,255,255,0.9);  font-size: 0.95rem;  margin-bottom: 24px; }
 .tg__channel-link {  display: flex;  flex-direction: column;  align-items: center;  justify-content: center;  gap: 8px;  margin: 0 auto 18px;  max-width: 320px;  opacity: 0.72; }
-.tg__channel-link .tg_channel {  width: 300px;  height: 300px;  object-fit: cover;  border-radius: 12px;  border: none;  box-shadow: none;  transition: opacity 0.2s ease; }
+.tg__channel-link .tg_channel {  width: 80%;  height: auto;  object-fit: cover;  border-radius: 12px;  border: none;  box-shadow: none;  transition: opacity 0.2s ease; }
 .tg__channel-link:hover {  opacity: 1; }
 .tg__channel-link a {  color: rgba(255,255,255,0.6);  font-size: 0.9rem;  text-decoration: none;  transition: color 0.2s ease; }
 .tg__channel-link a:hover {  color: white; }
@@ -151,6 +151,17 @@ button:focus {
 @media (max-width: 600px) {  body { padding: 24px 16px; }  .card { padding: 32px 24px; }  .love-grid { grid-template-columns: 1fr; }  .hero h1 { font-size: 2.2rem; } }
 
 /* Mobile-first breakpoints: enhance layout for larger screens */
+@media (max-width: 380px) {
+   .hero h1{ font-size: 1.2rem; }
+   .hero{word-break: break-word;}
+   .card { margin: 10px auto 16px; box-sizing: border-box !important; }
+      .tg__channel-link .tg_channel {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
 @media (min-width: 600px) {
   body { padding: 28px 20px; }
   .card { padding: 40px 32px; }
@@ -167,6 +178,7 @@ button:focus {
   .hero h1 { font-size: 2.8rem; }
   .container { width: min(900px, 100%); }
 }
+
 
 .gallery-header {  text-align: center;  padding-bottom: 12px; }
 .gallery-controls {  display: flex;  flex-wrap: wrap;  justify-content: center;  gap: 12px;  margin-top: 18px; }
