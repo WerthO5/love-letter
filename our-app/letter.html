@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Letter - Love App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#fff6f8;--accent:#ff6b81;--paper:#fff;--shadow:rgba(0,0,0,0.08)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Lato',sans-serif;background:linear-gradient(180deg,#fff,#ffeef2);color:#333;min-height:100vh}
+    .page-header{width:100%;max-width:900px;margin:0 auto 24px;padding:18px 20px;border-radius:28px;background:rgba(255,255,255,0.82);border:1px solid rgba(255,182,202,0.48);box-shadow:0 18px 40px rgba(175,68,120,0.08);display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative;z-index:2}
+    .brand{font-family:'Playfair Display',serif;font-size:24px;color:var(--accent);text-decoration:none}
+    .navbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:10px}
+    .navbar a{color:#7f3d6f;text-decoration:none;font-weight:700;padding:10px 16px;border-radius:999px;transition:background 0.25s ease,color 0.25s ease,transform 0.25s ease}
+    .navbar a:hover{background:rgba(233,30,140,0.12);color:#c2185b;transform:translateY(-1px)}
+    .navbar a.current{background:rgba(233,30,140,0.14);color:#c2185b;pointer-events:none}
+    .main-wrapper{display:flex;justify-content:center;padding:24px 20px 40px}
+    .envelope-wrap{width:min(100%,420px);perspective:1000px}
+    .envelope{position:relative;width:100%;height:340px;margin:0 auto;overflow:hidden;border-radius:24px;background:#fff5f8;box-shadow:0 28px 70px rgba(0,0,0,0.1)}
+    .envelope::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at top center,rgba(255,255,255,0.8),transparent 35%);pointer-events:none}
+    .flap{position:absolute;top:0;left:0;right:0;height:150px;background:linear-gradient(180deg,#ffd6e0,#ff9fbf);clip-path:polygon(0 0,100% 0,100% 85%,50% 100%,0 85%);border-bottom:2px solid rgba(0,0,0,0.12);transform-origin:top center;transition:transform 700ms cubic-bezier(.2,.8,.2,1);z-index:3}
+    .flap::after{content:'';position:absolute;left:50%;bottom:-14px;width:36px;height:36px;background:#ffe4ee;transform:translateX(-50%) rotate(45deg);box-shadow:0 8px 18px rgba(0,0,0,0.08)}
+    .body{position:absolute;top:132px;left:0;right:0;height:190px;background:linear-gradient(180deg,#fffefc,#fff3f8);border:1px solid rgba(255,183,200,0.65);border-top:none;border-bottom-left-radius:24px;border-bottom-right-radius:24px;box-shadow:0 18px 40px var(--shadow);overflow:hidden;z-index:2}
+    .body::before{content:'';position:absolute;top:-28px;left:50%;width:120%;height:52px;background:rgba(255,255,255,0.55);transform:translateX(-50%) rotate(8deg);border-radius:50%}
+    .letter{position:absolute;left:16px;right:16px;top:132px;height:190px;background:var(--paper);border-radius:18px;box-shadow:0 22px 48px rgba(0,0,0,0.09);transform:translateY(100%);transition:transform 700ms cubic-bezier(.2,.8,.2,1);padding:24px 18px 18px;box-sizing:border-box;overflow:auto;z-index:1}
+    .envelope.open .flap{transform:rotateX(180deg)}
+    .envelope.open .letter{transform:translateY(0);z-index:4}
+    .letter-text{min-height:180px;font-size:16px;line-height:1.75;color:#222;white-space:pre-wrap}
+    .controls{display:flex;justify-content:center;margin-top:20px}
+    .btn{background:var(--accent);color:#fff;border:none;padding:12px 18px;border-radius:10px;cursor:pointer;font-weight:700;transition:transform .2s ease}
+    .btn:hover{transform:translateY(-1px)}
+    .hint{font-size:13px;color:#666;text-align:center;margin-top:12px;max-width:360px;margin-left:auto;margin-right:auto}
+    @media (max-width:520px){
+      .page-header{padding:16px 14px}
+      .brand{font-size:20px}
+      .navbar a{padding:8px 10px;font-size:14px}
+      .main-wrapper{padding:20px 14px 36px}
+      .envelope{height:240px}
+      .body{height:140px}
+      .letter{top:108px;height:140px}
+      .letter-text{font-size:15px}
+      .hint{font-size:12px}
+    }
+    @media (max-width:380px){
+      .brand{font-size:18px}
+      .navbar a{font-size:13px;padding:7px 8px}
+      .btn{padding:10px 14px}
+    }
+  </style>
+</head>
+<body>
+  <header class="page-header">
+    <a class="brand" href="index.html">Love App</a>
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="love-message.html">Love Message</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="letter.html" class="current">Letter</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+  <main class="main-wrapper">
+    <div class="envelope-wrap">
+      <div class="envelope" id="envelope">
+        <div class="flap"></div>
+        <div class="body"></div>
+        <div class="letter">
+          <div id="letter-text" class="letter-text">
+Похоже ближайшее время меня ожидают проливные дожди... 
+    Прошло много времени с начала нашей сумасшедшей истории. Все так неожиданно закрутилось. Ты позвала меня на ночевку, мы отдыхали,а потом "Пуух!", и вот мы уже катаемся вместе после уроков, а по вечерам смотрим сериалы и анимешки. Наша история не такая как у всех, она другая и по-своему завораживающая. Я хочу тебе еще раз сказать, насколько я тобой дорожу, мы прошли через огонь и воду, буквально вдвоем. И только с тобой у меня столько теплых воспоминаний, ведь только ты была всегда на моей стороне. Я тоже тебе очень благодарен, за то что ты появилась в моей жизни, ведь ты смогла заменить мне всех друзей и близких. Я очень рад, что теперь могу со спокойной душой говорить всем, что именно ты моя половинка. Прости что часто несу всякую фигню, но понимаешь, только с тобой я могу быть самим собой. Ты стала первой для меня во многом, я еще ни с кем не гулял всю ночь, именно ты стала моей первой спутницей в отеле, в караоке, до тебя я не уходил в новый год никуда, и уж точно не плакал столько. Прости что осталось столько невыполненных обещаний, я обещаю большую часть исполнить с тобой в будущем. Я тебя очень очень люблю❤️, больше чем кого-либо, и готов всех променять ради тебя. Ты стала для меня тем человеком, кого я не смогу заменить, поэтому я очень переживаю за нас.
+    Пожалуйста, оставайся всегда такой же позитивной и смешной. Твоя неаккуратность заставляет меня умиляться и ухаживать за тобой. Твоя активность всегда тянула меня за собой, а тяжелый труд был для меня мотивацией работать. Я люблю тебя всю, со всеми твоими минусами и плюсами. Ты всегда мое солнышко, несмотря на то, как далеко ты светишь от меня, но когда ты рядом для меня всегда будет лето..          </div>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="btn" id="toggle">Открыть/Закрыть конверт</button>
+      </div>
+      <div class="hint"></div>
+    </div>
+  </main>
+  <script>
+    const envelope = document.getElementById('envelope');
+    const toggle = document.getElementById('toggle');
+    toggle.addEventListener('click', ()=>{
+      envelope.classList.toggle('open');
+    });
+  </script>
+</body>
+</html>

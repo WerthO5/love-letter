@@ -11,9 +11,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.500.0",
     "express": "^4.22.2",
     "multer": "^1.4.5-lts",
-    "@aws-sdk/client-s3": "^3.500.0"
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
